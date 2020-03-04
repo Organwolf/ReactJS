@@ -1,16 +1,20 @@
-import React, {Component} from 'react';
-
-// Review then componentise
-// at 1:02:45 mins -> https://www.youtube.com/watch?v=vIA130MePY8&list=PLM_i0obccy3uGD0Ba0xiTBSAUlq7aZgdo&index=1
-// need to change for commit
+import React, { Component } from 'react';
+import NewTodoForm from './NewTodoForm';
+import TodoList from './TodoList'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      message: 'Hello Coding Garden!',
+      message: 'TODO!',
       newTodo: '',
-      todos: []
+      todos: [{
+        title: 'Learning React',
+        done: false
+      }, {
+        title: 'Learn JSX',
+        done: false
+      }]
     };
   }
 
@@ -34,8 +38,10 @@ class App extends Component {
   toggleTodoDone(event, index) {
     console.log(event.target.checked);
     const todos = [...this.state.todos]; // copy the array
-    todos[index] = {...todos[index]}; // copy the array
-    todos[index].done = event.target.checked; // update done properly on copies array
+    todos[index] = {
+      ...todos[index],
+      done: event.target.checked
+    }; // copy the array
     this.setState({
       todos
     });
@@ -66,21 +72,17 @@ class App extends Component {
     return (
       <div className="App">
         <h3>{this.state.message}</h3>
-        <form onSubmit={(event) => this.formSubmitted(event)}>
-          <label htmlFor="newTodo">New Todo</label>
-          <input onChange={(event) => this.newTodoChanged(event)} id="newTodo" name="newTodo" value={this.state.newTodo} />
-          <button type="submit">Add Todo</button>
-        </form>
+        <NewTodoForm
+          formSubmitted={this.formSubmitted.bind(this)}
+          newTodoChanged={this.newTodoChanged.bind(this)}
+          newTodo={this.state.newTodo}
+        />
         <button onClick={() => this.allDone()}>All Done</button>
-        <ul>
-          {this.state.todos.map((todo, index) => {
-            return <li key={todo.title}>
-              <input onChange={(event) => this.toggleTodoDone(event, index)} type="checkbox" checked={todo.done}/> 
-              <span className={todo.done ? 'done' : ''}>{todo.title}</span>
-              <button onClick={() => this.removeTodo(index)}>Remove</button>
-            </li>
-          })}
-        </ul>
+        <TodoList
+          todos={this.state.todos}
+          toggleTodoDone={this.toggleTodoDone.bind(this)}
+          removeTodo={this.removeTodo.bind(this)}
+        />
       </div>
     );
   }

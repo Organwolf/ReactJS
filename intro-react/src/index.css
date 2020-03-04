@@ -6,8 +6,13 @@ body {
 
 input[type="checkbox"] {
   display: inline;
+  width: auto;
 }
 
 .done {
   text-decoration: line-through;
+}
+
+li {
+  list-style-type: none;
 }
