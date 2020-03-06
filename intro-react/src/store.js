@@ -2,6 +2,7 @@ import { createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const NEW_TODO_CHANGED = 'NEW_TODO_CHANGED';
+const ADD_TODO = 'ADD_TODO';
 
 const initialState = {
     message: 'TODO!',
@@ -24,7 +25,13 @@ export const actions = {
       type: NEW_TODO_CHANGED,
       newTodo
     };
-  }
+  },
+  addTodo(todo){
+    return {
+      type: ADD_TODO,
+      todo
+    };
+  },
 }
 
 export function reducer(state = initialState, action) {
@@ -33,6 +40,12 @@ export function reducer(state = initialState, action) {
         return {
           ...state,
           newTodo: action.newTodo
+        };
+      }
+      case ADD_TODO: {
+        return {
+          ...state,
+          todos: [...state.todos, action.todo]
         };
       }
       default:

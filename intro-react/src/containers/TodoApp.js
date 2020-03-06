@@ -11,13 +11,13 @@ class TodoApp extends Component {
 
   formSubmitted(event) {
     event.preventDefault();
-    this.setState({
-      newTodo: '',
-      todos: [...this.state.todos, {
-        title: this.state.newTodo,
-        done: false
-      }]
-    })
+
+    this.props.onAddTodo({
+      title: this.props.newTodo,
+      done: false
+    });
+
+    this.props.onNewTodoChanged('');
   }
 
   toggleTodoDone(event, index) {
@@ -84,7 +84,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onNewTodoChanged(newTodo) {
-            dispatch(actions.newTodoChanged(newTodo))
+          dispatch(actions.newTodoChanged(newTodo))
+        },
+        onAddTodo(todo) {
+          dispatch(actions.addTodo(todo))
         }
     }
 }
