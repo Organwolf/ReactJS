@@ -4,6 +4,8 @@ import TodoList from '../components/TodoList'
 import { connect } from 'react-redux'
 import { actions } from '../store'
 
+// At 53:07 - https://www.youtube.com/watch?v=_l8z3TTlQQo&list=PLM_i0obccy3uGD0Ba0xiTBSAUlq7aZgdo&index=2&pbjreload=10
+
 class TodoApp extends Component {
   constructor() {
     super();
@@ -21,14 +23,9 @@ class TodoApp extends Component {
   }
 
   toggleTodoDone(event, index) {
-    console.log(event.target.checked);
-    const todos = [...this.state.todos]; // copy the array
-    todos[index] = {
-      ...todos[index],
-      done: event.target.checked
-    }; // copy the array
-    this.setState({
-      todos
+    this.props.onToggleTodoDone({
+      index,
+      checked: event.target.checked
     });
   }
 
@@ -88,6 +85,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         onAddTodo(todo) {
           dispatch(actions.addTodo(todo))
+        },
+        onToggleTodoDone(toggle) {
+          dispatch(actions.toggleTodoDone(toggle))
         }
     }
 }

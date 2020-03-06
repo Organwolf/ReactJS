@@ -9,7 +9,7 @@ const TodoList = (props) => {
                     <TodoItem
                         key={index}
                         todo={todo}
-                        toggleDone={props.toggleDone}
+                        toggleTodoDone={props.toggleTodoDone}
                         removeTodo={props.removeTodo}
                         index={index}
                     />

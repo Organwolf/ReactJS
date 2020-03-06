@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 const NEW_TODO_CHANGED = 'NEW_TODO_CHANGED';
 const ADD_TODO = 'ADD_TODO';
+const TOGGLE_TODO_DONE = 'TOGGLE_TODO_DONE';
 
 const initialState = {
     message: 'TODO!',
@@ -32,6 +33,12 @@ export const actions = {
       todo
     };
   },
+  toggleTodoDone(toggle) {
+    return {
+      type: TOGGLE_TODO_DONE,
+      toggle
+    }
+  },
 }
 
 export function reducer(state = initialState, action) {
@@ -47,6 +54,17 @@ export function reducer(state = initialState, action) {
           ...state,
           todos: [...state.todos, action.todo]
         };
+      }
+      case TOGGLE_TODO_DONE: {
+          const todos = [...state.todos]; // copy the array
+          todos[action.toggle.index] = {
+            ...todos[action.toggle.index],
+            done: action.toggle.checked
+          };
+          return {
+            ...state,
+            todos
+          };
       }
       default:
           return state;
