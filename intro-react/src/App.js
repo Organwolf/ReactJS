@@ -14,6 +14,9 @@ class App extends Component {
       }, {
         title: 'Learn JSX',
         done: false
+      }, {
+        title: 'Add Redux',
+        done: false
       }]
     };
   }
