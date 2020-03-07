@@ -26,15 +26,6 @@ class TodoApp extends Component {
     });
   }
 
-  removeTodo(index) {
-    const todos = [...this.state.todos]; // copy the array
-    todos.splice(index, 1);
-
-    this.setState({
-      todos
-    });
-  }
-
   allDone() {
     const todos = this.state.todos.map(todo => {
       return {
@@ -56,11 +47,11 @@ class TodoApp extends Component {
           newTodoChanged={this.props.onNewTodoChanged}
           newTodo={this.props.newTodo}
         />
-        <button onClick={() => this.allDone()}>All Done</button>
+        <button onClick={this.props.onCheckAllTodos}>All Done</button>
         <TodoList
           todos={this.props.todos}
           toggleTodoDone={this.toggleTodoDone.bind(this)}
-          removeTodo={this.removeTodo.bind(this)}
+          removeTodo={this.props.onRemoveTodo}
         />
       </div>
     );
@@ -85,6 +76,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     onToggleTodoDone(toggle) {
       dispatch(actions.toggleTodoDone(toggle))
+    },
+    onRemoveTodo(index) {
+      dispatch(actions.removeTodo(index))
+    },
+    onCheckAllTodos() {
+      dispatch(actions.allDone())
     }
   }
 }
