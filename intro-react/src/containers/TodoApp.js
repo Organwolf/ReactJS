@@ -7,9 +7,6 @@ import { actions } from '../store'
 // At 53:07 - https://www.youtube.com/watch?v=_l8z3TTlQQo&list=PLM_i0obccy3uGD0Ba0xiTBSAUlq7aZgdo&index=2&pbjreload=10
 
 class TodoApp extends Component {
-  constructor() {
-    super();
-  }
 
   formSubmitted(event) {
     event.preventDefault();
@@ -71,25 +68,25 @@ class TodoApp extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        message: state.message,
-        newTodo: state.newTodo,
-        todos: state.todos
-    };
+  return {
+    message: state.message,
+    newTodo: state.newTodo,
+    todos: state.todos
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        onNewTodoChanged(newTodo) {
-          dispatch(actions.newTodoChanged(newTodo))
-        },
-        onAddTodo(todo) {
-          dispatch(actions.addTodo(todo))
-        },
-        onToggleTodoDone(toggle) {
-          dispatch(actions.toggleTodoDone(toggle))
-        }
+  return {
+    onNewTodoChanged(newTodo) {
+      dispatch(actions.newTodoChanged(newTodo))
+    },
+    onAddTodo(todo) {
+      dispatch(actions.addTodo(todo))
+    },
+    onToggleTodoDone(toggle) {
+      dispatch(actions.toggleTodoDone(toggle))
     }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoApp);
