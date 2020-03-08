@@ -1,18 +1,24 @@
 import React from 'react'
+import ReviewTodo from './ReviewTodo';
 
 const TodoItem = (props) => {
     const { todo, index } = props;
     return (
         <li>
-            <input 
-                onChange={(event) => props.toggleTodoDone(event, index)} 
-                type="checkbox" 
-                checked={todo.done} 
+            <input
+                onChange={(event) => props.toggleTodoDone(event, index)}
+                type="checkbox"
+                checked={todo.done}
             />
-            <span 
+            <span
                 className={todo.done ? 'done' : ''}>{todo.title}
             </span>
-            <button 
+            <textarea
+                placeholder="Tell me how it went.."
+                className={todo.done ? '' : 'hide'}
+            />
+            <ReviewTodo />
+            <button
                 onClick={() => props.removeTodo(index)}>
                 Remove
             </button>

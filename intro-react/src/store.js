@@ -18,7 +18,7 @@ const initialState = {
     done: false
   }, {
     title: 'Add Redux',
-    done: false
+    done: true
   }]
 };
 
