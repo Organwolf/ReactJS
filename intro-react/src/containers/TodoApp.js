@@ -51,23 +51,37 @@ class TodoApp extends Component {
   render() {
     return (
       <div className="App">
-        <h3>{this.props.message}</h3>
-        <NewTodoForm
-          formSubmitted={this.formSubmitted.bind(this)}
-          newTodoChanged={this.props.onNewTodoChanged}
-          newTodo={this.props.newTodo}
-        />
-        <button onClick={this.props.onCheckAllTodos}>All Done</button>
-        <TodoList
-          todos={this.props.todos}
-          toggleTodoDone={this.toggleTodoDone.bind(this)}
-          removeTodo={this.props.onRemoveTodo}
-          newReviewChanged={this.props.onReviewChanged}
-          saveTodo={this.saveSubmitted.bind(this)}
-        />
-        <CompletedTodoList
-          completedTodos={this.props.completedTodos}
-        />
+
+        <div className="welcomeMessage">
+          <h3>{this.props.message}</h3>
+        </div>
+        <div className="container">
+          <NewTodoForm
+            formSubmitted={this.formSubmitted.bind(this)}
+            newTodoChanged={this.props.onNewTodoChanged}
+            newTodo={this.props.newTodo}
+          />
+        </div>
+
+        <hr className=""></hr>
+
+        <div className="container">
+          <TodoList
+            todos={this.props.todos}
+            toggleTodoDone={this.toggleTodoDone.bind(this)}
+            removeTodo={this.props.onRemoveTodo}
+            newReviewChanged={this.props.onReviewChanged}
+            saveTodo={this.saveSubmitted.bind(this)}
+          />
+        </div>
+
+        <hr className=""></hr>
+
+        <div className="container">
+          <CompletedTodoList
+            completedTodos={this.props.completedTodos}
+          />
+        </div>
       </div>
     );
   }

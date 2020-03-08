@@ -4,7 +4,7 @@ import ReviewTodo from './ReviewTodo';
 const TodoItem = (props) => {
     const { todo, index, newReviewChanged } = props;
     return (
-        <li>
+        <li className="todoItem">
             <input
                 onChange={(event) => props.toggleTodoDone(event, index)}
                 type="checkbox"
@@ -19,11 +19,13 @@ const TodoItem = (props) => {
             />
             {todo.done ?
                 <button
+                    className="button"
                     onClick={() => props.saveTodo(index)}>
                     Done
                 </button> :
 
                 <button
+                    className="button"
                     onClick={() => props.removeTodo(index)}>
                     Remove
                 </button>

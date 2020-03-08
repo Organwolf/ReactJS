@@ -1,7 +1,30 @@
 body {
-  font: 1.2em "Fira Sans", sans-serif;
-  margin: 0;
-  padding: 0;
+  width: 600px;
+  margin: 0 auto;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-style: italic;
+  font-weight: 100;
+  font-variant-ligatures: normal;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  /* background-color: #e0e0e0; */
+}
+
+.button {
+  /* background: #eb94d0; */
+  border-radius: 10px;
+  /* color: #fafafa;  */
+  font-size: 16px;
+  padding: 5px;
+  width: 20%;
+}
+
+button:hover {
+  background: #2079b0;
+}
+
+.todoItem > button {
+  margin-left: 2em;
 }
 
 input[type="checkbox"] {
@@ -13,11 +36,36 @@ input[type="checkbox"] {
   text-decoration: line-through;
 }
 
-li {
+ul {
   list-style-type: none;
+  padding: 0;
 }
 
 .hide {
   display: none;
 }
 
+.welcomeMessage {
+  text-align: center;
+}
+
+textarea {
+  resize: none;
+  outline: none;
+
+}
+
+.container {
+  /* background-color: #eeeeee; */
+  /* top | horizontal | bottom */
+  padding: 1.5em;
+  margin: 1em;
+}
+
+hr {
+  border: 3px solid #eeeeee;
+}
+
+p span {
+  display: block;
+}
