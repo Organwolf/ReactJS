@@ -3,6 +3,7 @@ import NewTodoForm from '../components/NewTodoForm';
 import TodoList from '../components/TodoList'
 import { connect } from 'react-redux'
 import { actions } from '../store'
+import CompletedTodoList from '../components/CompletedTodoList';
 
 class TodoApp extends Component {
 
@@ -56,11 +57,16 @@ class TodoApp extends Component {
   }
 }
 
+// <CompletedTodoList
+//   completedTodos={this.props.completedTodos}
+// />
+
 const mapStateToProps = (state) => {
   return {
     message: state.message,
     newTodo: state.newTodo,
-    todos: state.todos
+    todos: state.todos,
+    completedTodos: state.completedTodos
   };
 }
 

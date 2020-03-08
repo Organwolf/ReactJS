@@ -15,10 +15,11 @@ const initialState = {
     done: false
   }, {
     title: 'Learn JSX',
-    done: false
-  }, {
-    title: 'Add Redux',
     done: true
+  }],
+  completedTodos: [{
+    title: 'Add Redux',
+    review: 'It wasn´t easy but onece done it did boost my self-confidence'
   }]
 };
 
