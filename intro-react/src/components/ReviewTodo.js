@@ -2,8 +2,10 @@ import React from 'react'
 
 const ReviewTodo = (props) => {
     return (
-        <p>I am a review component</p>
-    )
+        <textarea
+            className={props.done ? '' : 'hide'}
+        />
+    );
 
 }
 

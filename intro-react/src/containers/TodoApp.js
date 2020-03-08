@@ -4,8 +4,6 @@ import TodoList from '../components/TodoList'
 import { connect } from 'react-redux'
 import { actions } from '../store'
 
-// At 53:07 - https://www.youtube.com/watch?v=_l8z3TTlQQo&list=PLM_i0obccy3uGD0Ba0xiTBSAUlq7aZgdo&index=2&pbjreload=10
-
 class TodoApp extends Component {
 
   formSubmitted(event) {

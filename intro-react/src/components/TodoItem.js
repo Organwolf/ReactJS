@@ -13,14 +13,12 @@ const TodoItem = (props) => {
             <span
                 className={todo.done ? 'done' : ''}>{todo.title}
             </span>
-            <textarea
-                placeholder="Tell me how it went.."
-                className={todo.done ? '' : 'hide'}
+            <ReviewTodo
+                done={todo.done}
             />
-            <ReviewTodo />
             <button
                 onClick={() => props.removeTodo(index)}>
-                Remove
+                {todo.done ? 'Done' : 'Remove'}
             </button>
         </li>
     )
