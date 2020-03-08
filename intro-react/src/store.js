@@ -12,19 +12,24 @@ const SAVE_TODO = 'SAVE_TODO';
 const initialState = {
   message: 'Welcome!',
   newTodo: '',
+  newReview: '',
   todos: [{
     title: 'Learning React',
+    review: '',
     done: false
   }, {
     title: 'Learn JSX',
+    review: '',
     done: true
   }],
   completedTodos: [{
     title: 'Add Redux',
-    review: 'It wasn´t easy but once done it did boost my self-confidence'
+    review: 'It wasn´t easy but once done it did boost my self-confidence',
+    done: true
   }, {
     title: 'Another completed item',
-    review: 'This is moving forward'
+    review: 'This is moving forward',
+    done: true
   }]
 };
 
@@ -124,8 +129,11 @@ export function reducer(state = initialState, action) {
       }
     }
     case SAVE_TODO:
-      // add the todo to completed todos -> that should show them on screen
-      return state;
+      return {
+        ...state,
+        completedTodos: [...state.completedTodos, action.todo]
+      }
+
     default:
       return state;
   }

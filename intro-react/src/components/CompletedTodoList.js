@@ -11,7 +11,6 @@ const CompletedTodoList = (props) => {
                         <CompletedTodoItem
                             key={'completed-' + index}
                             todo={todo}
-                            editReview={"add logic for edit later"}
                         />
                     );
                 })}

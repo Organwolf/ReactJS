@@ -19,7 +19,7 @@ const TodoItem = (props) => {
             />
             {todo.done ?
                 <button
-                    onClick={() => props.saveTodo()}>
+                    onClick={() => props.saveTodo(index)}>
                     Done
                 </button> :
 

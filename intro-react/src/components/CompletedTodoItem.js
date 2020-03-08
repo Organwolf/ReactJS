@@ -7,6 +7,7 @@ const CompletedTodoItem = (props) => {
             <span>
                 {todo.title}
             </span>
+
             <p>{todo.review}</p>
         </li>
     )

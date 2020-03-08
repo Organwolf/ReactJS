@@ -18,11 +18,14 @@ class TodoApp extends Component {
     this.props.onNewTodoChanged('');
   }
 
-  saveSubmitted() {
-    console.log("save submitted")
+  saveSubmitted(index) {
+    console.log("saving a review")
+    console.log(this.props.todos[index])
+    console.log(this.props.newReview)
     this.props.onSaveTodo({
-      title: 'Important todo',
-      review: 'It went well'
+      title: this.props.todos[index].title,
+      review: this.props.newReview,
+      done: true
     });
   }
 
@@ -75,6 +78,7 @@ const mapStateToProps = (state) => {
   return {
     message: state.message,
     newTodo: state.newTodo,
+    newReview: state.newReview,
     todos: state.todos,
     completedTodos: state.completedTodos
   };
