@@ -18,6 +18,14 @@ class TodoApp extends Component {
     this.props.onNewTodoChanged('');
   }
 
+  saveSubmitted() {
+    console.log("save submitted")
+    this.props.onSaveTodo({
+      title: 'Important todo',
+      review: 'It went well'
+    });
+  }
+
   toggleTodoDone(event, index) {
     this.props.onToggleTodoDone({
       index,
@@ -51,15 +59,17 @@ class TodoApp extends Component {
           todos={this.props.todos}
           toggleTodoDone={this.toggleTodoDone.bind(this)}
           removeTodo={this.props.onRemoveTodo}
+          newReviewChanged={this.props.onReviewChanged}
+          saveTodo={this.saveSubmitted.bind(this)}
+        />
+        <CompletedTodoList
+          completedTodos={this.props.completedTodos}
         />
       </div>
     );
   }
 }
 
-// <CompletedTodoList
-//   completedTodos={this.props.completedTodos}
-// />
 
 const mapStateToProps = (state) => {
   return {
@@ -86,6 +96,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     onCheckAllTodos() {
       dispatch(actions.allDone())
+    },
+    onSaveTodo(todo) {
+      dispatch(actions.saveTodo(todo))
+    },
+    onReviewChanged(newReview) {
+      dispatch(actions.newReviewChanged(newReview))
     }
   }
 }

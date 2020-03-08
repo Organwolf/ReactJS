@@ -3,17 +3,20 @@ import CompletedTodoItem from './CompletedTodoItem'
 
 const CompletedTodoList = (props) => {
     return (
-        <ul>
-            {props.completedTodos.map((todo, index) => {
-                return (
-                    <CompletedTodoItem
-                        key={index}
-                        todo={todo}
-                        editReview={"add logic for edit later"}
-                    />
-                );
-            })}
-        </ul>
+        <div>
+            <label>Finished Todos:</label>
+            <ul>
+                {props.completedTodos.map((todo, index) => {
+                    return (
+                        <CompletedTodoItem
+                            key={'completed-' + index}
+                            todo={todo}
+                            editReview={"add logic for edit later"}
+                        />
+                    );
+                })}
+            </ul>
+        </div>
     )
 }
 

@@ -11,6 +11,8 @@ const TodoList = (props) => {
                         todo={todo}
                         toggleTodoDone={props.toggleTodoDone}
                         removeTodo={props.removeTodo}
+                        saveTodo={props.saveTodo}
+                        newReviewChanged={props.newReviewChanged}
                         index={index}
                     />
                 );

@@ -2,13 +2,15 @@ import { createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const NEW_TODO_CHANGED = 'NEW_TODO_CHANGED';
+const NEW_REVIEW_CHANGED = 'NEW_REVIEW_CHANGED';
 const ADD_TODO = 'ADD_TODO';
 const TOGGLE_TODO_DONE = 'TOGGLE_TODO_DONE';
 const REMOVE_TODO = 'REMOVE_TODO';
-const COMPLETE_ALL_TODOS = 'COMPLETE_ALL_TODOS'
+const COMPLETE_ALL_TODOS = 'COMPLETE_ALL_TODOS';
+const SAVE_TODO = 'SAVE_TODO';
 
 const initialState = {
-  message: 'TODO!',
+  message: 'Welcome!',
   newTodo: '',
   todos: [{
     title: 'Learning React',
@@ -19,7 +21,10 @@ const initialState = {
   }],
   completedTodos: [{
     title: 'Add Redux',
-    review: 'It wasn´t easy but onece done it did boost my self-confidence'
+    review: 'It wasn´t easy but once done it did boost my self-confidence'
+  }, {
+    title: 'Another completed item',
+    review: 'This is moving forward'
   }]
 };
 
@@ -28,6 +33,12 @@ export const actions = {
     return {
       type: NEW_TODO_CHANGED,
       newTodo
+    };
+  },
+  newReviewChanged(newReview) {
+    return {
+      type: NEW_REVIEW_CHANGED,
+      newReview
     };
   },
   addTodo(todo) {
@@ -52,6 +63,12 @@ export const actions = {
     return {
       type: COMPLETE_ALL_TODOS
     }
+  },
+  saveTodo(todo) {
+    return {
+      type: SAVE_TODO,
+      todo
+    }
   }
 }
 
@@ -62,6 +79,12 @@ export function reducer(state = initialState, action) {
         ...state,
         newTodo: action.newTodo
       };
+    }
+    case NEW_REVIEW_CHANGED: {
+      return {
+        ...state,
+        newReview: action.newReview
+      }
     }
     case ADD_TODO: {
       return {
@@ -100,6 +123,9 @@ export function reducer(state = initialState, action) {
         todos
       }
     }
+    case SAVE_TODO:
+      // add the todo to completed todos -> that should show them on screen
+      return state;
     default:
       return state;
   }

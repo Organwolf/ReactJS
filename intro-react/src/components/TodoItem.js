@@ -2,7 +2,7 @@ import React from 'react'
 import ReviewTodo from './ReviewTodo';
 
 const TodoItem = (props) => {
-    const { todo, index } = props;
+    const { todo, index, newReviewChanged } = props;
     return (
         <li>
             <input
@@ -15,12 +15,20 @@ const TodoItem = (props) => {
             </span>
             <ReviewTodo
                 done={todo.done}
+                newReviewChanged={newReviewChanged}
             />
-            <button
-                onClick={() => props.removeTodo(index)}>
-                {todo.done ? 'Done' : 'Remove'}
-            </button>
-        </li>
+            {todo.done ?
+                <button
+                    onClick={() => props.saveTodo()}>
+                    Done
+                </button> :
+
+                <button
+                    onClick={() => props.removeTodo(index)}>
+                    Remove
+                </button>
+            }
+        </li >
     )
 }
 
