@@ -9,6 +9,8 @@ import { Layout } from './components/Layout.js'
 // https://www.youtube.com/watch?v=tOK9l5uP06U
 // at 17 minutes
 
+// https://github.com/MyNameIsURL/React-Bootstrap-Tutorial/tree/master/src
+
 class App extends Component {
   render() {
     return (
