@@ -3,13 +3,9 @@ import NewTodoForm from '../components/NewTodoForm';
 import TodoList from '../components/TodoList'
 import { connect } from 'react-redux'
 import { actions } from '../store'
-
-// At 53:07 - https://www.youtube.com/watch?v=_l8z3TTlQQo&list=PLM_i0obccy3uGD0Ba0xiTBSAUlq7aZgdo&index=2&pbjreload=10
+import CompletedTodoList from '../components/CompletedTodoList';
 
 class TodoApp extends Component {
-  constructor() {
-    super();
-  }
 
   formSubmitted(event) {
     event.preventDefault();
@@ -22,19 +18,21 @@ class TodoApp extends Component {
     this.props.onNewTodoChanged('');
   }
 
+  saveSubmitted(index) {
+    console.log("saving a review")
+    console.log(this.props.todos[index])
+    console.log(this.props.newReview)
+    this.props.onSaveTodo({
+      title: this.props.todos[index].title,
+      review: this.props.newReview,
+      done: true
+    });
+  }
+
   toggleTodoDone(event, index) {
     this.props.onToggleTodoDone({
       index,
       checked: event.target.checked
-    });
-  }
-
-  removeTodo(index) {
-    const todos = [...this.state.todos]; // copy the array
-    todos.splice(index, 1);
-
-    this.setState({
-      todos
     });
   }
 
@@ -53,43 +51,77 @@ class TodoApp extends Component {
   render() {
     return (
       <div className="App">
-        <h3>{this.props.message}</h3>
-        <NewTodoForm
-          formSubmitted={this.formSubmitted.bind(this)}
-          newTodoChanged={this.props.onNewTodoChanged}
-          newTodo={this.props.newTodo}
-        />
-        <button onClick={() => this.allDone()}>All Done</button>
-        <TodoList
-          todos={this.props.todos}
-          toggleTodoDone={this.toggleTodoDone.bind(this)}
-          removeTodo={this.removeTodo.bind(this)}
-        />
+
+        <div className="welcomeMessage">
+          <h3>{this.props.message}</h3>
+        </div>
+        <div className="container">
+          <NewTodoForm
+            formSubmitted={this.formSubmitted.bind(this)}
+            newTodoChanged={this.props.onNewTodoChanged}
+            newTodo={this.props.newTodo}
+          />
+        </div>
+
+        <hr className=""></hr>
+
+        <div className="container">
+          <TodoList
+            todos={this.props.todos}
+            toggleTodoDone={this.toggleTodoDone.bind(this)}
+            removeTodo={this.props.onRemoveTodo}
+            newReviewChanged={this.props.onReviewChanged}
+            saveTodo={this.saveSubmitted.bind(this)}
+          />
+        </div>
+
+        <hr className=""></hr>
+
+        <div className="container">
+          <CompletedTodoList
+            completedTodos={this.props.completedTodos}
+          />
+        </div>
       </div>
     );
   }
 }
 
+
 const mapStateToProps = (state) => {
-    return {
-        message: state.message,
-        newTodo: state.newTodo,
-        todos: state.todos
-    };
+  return {
+    message: state.message,
+    newTodo: state.newTodo,
+    newReview: state.newReview,
+    todos: state.todos,
+    completedTodos: state.completedTodos
+  };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        onNewTodoChanged(newTodo) {
-          dispatch(actions.newTodoChanged(newTodo))
-        },
-        onAddTodo(todo) {
-          dispatch(actions.addTodo(todo))
-        },
-        onToggleTodoDone(toggle) {
-          dispatch(actions.toggleTodoDone(toggle))
-        }
+  return {
+    onNewTodoChanged(newTodo) {
+      dispatch(actions.newTodoChanged(newTodo))
+    },
+    onAddTodo(todo) {
+      dispatch(actions.addTodo(todo))
+    },
+    onToggleTodoDone(toggle) {
+      dispatch(actions.toggleTodoDone(toggle))
+    },
+    onRemoveTodo(index) {
+      dispatch(actions.removeTodo(index))
+    },
+    onCheckAllTodos() {
+      dispatch(actions.allDone())
+    },
+    onSaveTodo(todo) {
+      dispatch(actions.saveTodo(todo))
+    },
+    onReviewChanged(newReview) {
+      dispatch(actions.newReviewChanged(newReview))
     }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoApp);

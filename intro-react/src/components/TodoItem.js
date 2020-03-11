@@ -1,22 +1,36 @@
 import React from 'react'
+import ReviewTodo from './ReviewTodo';
 
 const TodoItem = (props) => {
-    const { todo, index } = props;
+    const { todo, index, newReviewChanged } = props;
     return (
-        <li>
-            <input 
-                onChange={(event) => props.toggleTodoDone(event, index)} 
-                type="checkbox" 
-                checked={todo.done} 
+        <li className="todoItem">
+            <input
+                onChange={(event) => props.toggleTodoDone(event, index)}
+                type="checkbox"
+                checked={todo.done}
             />
-            <span 
+            <span
                 className={todo.done ? 'done' : ''}>{todo.title}
             </span>
-            <button 
-                onClick={() => props.removeTodo(index)}>
-                Remove
-            </button>
-        </li>
+            <ReviewTodo
+                done={todo.done}
+                newReviewChanged={newReviewChanged}
+            />
+            {todo.done ?
+                <button
+                    className="button"
+                    onClick={() => props.saveTodo(index)}>
+                    Done
+                </button> :
+
+                <button
+                    className="button"
+                    onClick={() => props.removeTodo(index)}>
+                    Remove
+                </button>
+            }
+        </li >
     )
 }
 

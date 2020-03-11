@@ -3,9 +3,15 @@ import React from 'react';
 const NewTodoForm = (props) => {
     return (
         <form onSubmit={props.formSubmitted}>
-            <label htmlFor="newTodo">New Todo</label>
-            <input onChange={(event) => props.newTodoChanged(event.target.value)} id="newTodo" name="newTodo" value={props.newTodo} />
-            <button type="submit">Add Todo</button>
+            <p>
+                <span>Add a todo:</span>
+                <span>
+                    <input onChange={(event) => props.newTodoChanged(event.target.value)} id="newTodo" name="newTodo" value={props.newTodo} />
+                </span>
+                <span>
+                    <button className="button" type="submit">Add Todo</button>
+                </span>
+            </p>
         </form>
     )
 }
