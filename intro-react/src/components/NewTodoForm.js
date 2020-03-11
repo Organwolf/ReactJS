@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap'
 
 const NewTodoForm = (props) => {
     return (
@@ -9,7 +10,10 @@ const NewTodoForm = (props) => {
                     <input onChange={(event) => props.newTodoChanged(event.target.value)} id="newTodo" name="newTodo" value={props.newTodo} />
                 </span>
                 <span>
-                    <button className="button" type="submit">Add Todo</button>
+                    <Button
+                        type="submit"
+                        variant="dark"
+                    >Add Todo</Button>
                 </span>
             </p>
         </form>

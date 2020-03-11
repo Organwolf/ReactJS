@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import NewTodoForm from '../components/NewTodoForm';
 import TodoList from '../components/TodoList'
 import { connect } from 'react-redux'
 import { actions } from '../store'
-import CompletedTodoList from '../components/CompletedTodoList';
+import CompletedTodoList from '../components/CompletedTodoList'
 
 class TodoApp extends Component {
 
@@ -50,8 +50,7 @@ class TodoApp extends Component {
 
   render() {
     return (
-      <div className="App">
-
+      <Fragment>
         <div className="welcomeMessage">
           <h3>{this.props.message}</h3>
         </div>
@@ -82,7 +81,8 @@ class TodoApp extends Component {
             completedTodos={this.props.completedTodos}
           />
         </div>
-      </div>
+      </Fragment>
+
     );
   }
 }
