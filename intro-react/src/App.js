@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import TodoApp from './containers/TodoApp';
-import About from './components/About'
-import NoMatch from './components/NoMatch'
+import { About } from './components/About'
+import { NoMatch } from './components/NoMatch'
 import { Layout } from './components/Layout.js'
+import { NavigationBar } from './components/NavigationBar'
+
 
 // https://www.youtube.com/watch?v=tOK9l5uP06U
 // at 17 minutes
@@ -15,7 +17,8 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Router>
+        <BrowserRouter>
+          <NavigationBar />
           <Layout>
             <Switch>
               <Route exact path="/" component={TodoApp} />
@@ -23,7 +26,7 @@ class App extends Component {
               <Route component={NoMatch} />
             </Switch>
           </Layout>
-        </Router>
+        </BrowserRouter>
       </Fragment>
     );
   }
