@@ -1,5 +1,6 @@
 import React from 'react'
 import ReviewTodo from './ReviewTodo';
+import { Button } from 'react-bootstrap'
 
 const TodoItem = (props) => {
     const { todo, index, newReviewChanged } = props;
@@ -18,19 +19,21 @@ const TodoItem = (props) => {
                 newReviewChanged={newReviewChanged}
             />
             {todo.done ?
-                <button
-                    className="button"
-                    onClick={() => props.saveTodo(index)}>
-                    Done
-                </button> :
-
-                <button
-                    className="button"
-                    onClick={() => props.removeTodo(index)}>
-                    Remove
-                </button>
+                <Button
+                    type="submit"
+                    variant="dark"
+                    onClick={() => props.saveTodo(index)}
+                    >Done
+                </Button>
+                :
+                <Button
+                    type="submit"
+                    variant="dark"
+                    onClick={() => props.removeTodo(index)}
+                    >Remove
+                </Button>
             }
-        </li >
+        </li>
     )
 }
 

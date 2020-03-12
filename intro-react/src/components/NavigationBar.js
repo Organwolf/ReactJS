@@ -8,13 +8,12 @@ const Styles = styled.div`
         background-color: #222;
     }
 
-    .navbar-brand .navbar-nav .nav-link {
+    a, .navbar-brand .navbar-nav .nav-link {
         color: #bbb;
 
         &:hover {
             color: white;
         }
-
     }
 `;
 
@@ -27,7 +26,7 @@ export const NavigationBar = () => (
                 <Nav className="ml-auto">
                     <Nav.Item>
                         <Nav.Link>
-                        <Link to="/">Home</Link>
+                        <Link to="/">Todos</Link>
                         </Nav.Link>
                     </Nav.Item>
                     <Nav.Item>

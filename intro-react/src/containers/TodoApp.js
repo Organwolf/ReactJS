@@ -82,7 +82,6 @@ class TodoApp extends Component {
           />
         </div>
       </Fragment>
-
     );
   }
 }
