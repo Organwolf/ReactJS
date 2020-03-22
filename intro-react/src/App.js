@@ -6,6 +6,7 @@ import { About } from './components/About'
 import { NoMatch } from './components/NoMatch'
 import { Layout } from './components/Layout.js'
 import { NavigationBar } from './components/NavigationBar'
+import { Jumbotron } from './components/Jumbotron'
 
 
 // https://www.youtube.com/watch?v=tOK9l5uP06U
@@ -19,6 +20,7 @@ class App extends Component {
       <Fragment>
         <BrowserRouter>
           <NavigationBar />
+          <Jumbotron />
           <Layout>
             <Switch>
               <Route exact path="/" component={TodoApp} />
