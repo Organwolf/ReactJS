@@ -9,7 +9,7 @@ const REMOVE_TODO = 'REMOVE_TODO';
 const COMPLETE_ALL_TODOS = 'COMPLETE_ALL_TODOS';
 const SAVE_TODO = 'SAVE_TODO';
 
-const initialState = {
+export const initialState = {
   message: 'Welcome!',
   newTodo: '',
   newReview: '',
