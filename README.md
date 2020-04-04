@@ -1,6 +1,7 @@
 # ReactJS
 
-Client:
-npm start
-Server:
+Client:  
+npm start  
+
+Server:  
 npm run devstart
