@@ -56,6 +56,15 @@ const ContextState = () => {
       dispatchAuthReducer(ACTIONS.remove_profile())
     }
 
+    const handleDBProfile = (profile) => {
+      dispatchAuthReducer(ACTIONS.set_db_profile(profile))
+    }
+
+    const handleRemoveDBProfile = () => {
+      dispatchAuthReducer(ACTIONS.remove_db_profile())
+    }
+    
+
 
 
     /*
@@ -93,6 +102,17 @@ const ContextState = () => {
             stateProp2: stateReducer1.stateprop2,
             dispatchContextTrue: () => handleDispatchTrue(),
             dispatchContextFalse: () => handleDispatchFalse(),
+
+            //Add and remove profile
+            dbProfileState: stateAuthReducer.db_profile,
+
+            handleAddDBProfile: (profile) => handleDBProfile(profile),
+            handleRemoveDBProfile: () => handleRemoveDBProfile(),
+                     
+            //Posts State
+            postsState: statePostsReducer.posts,
+            handleAddPosts: (posts) => handleSetPosts(posts),
+            handleRemovePosts: () => handleRemovePosts(),
 
             //Form Reducer
             useContextChangeState: stateFormReducer.user_textChange,
