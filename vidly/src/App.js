@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Movies from "./componenst/movies.jsx";
+import Movies from "./components/movies.jsx";
 
 function App() {
   return (
