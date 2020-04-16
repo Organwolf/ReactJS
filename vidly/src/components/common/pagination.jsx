@@ -5,9 +5,9 @@ const Pagination = (props) => {
   const { itemsCount, pageSize } = props;
 
   const pagesCount = Math.ceil(itemsCount / pageSize);
-  console.log(pagesCount);
   if (pagesCount === 1) return null;
   const pages = _.range(1, pagesCount + 1);
+
   return (
     <nav aria-label="...">
       <ul className="pagination pagination mt-2 ml-2">
