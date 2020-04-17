@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import Like from "./common/like";
 import { getMovies } from "../services/fakeMovieService";
 import Pagination from "./common/pagination";
+import { paginate } from "./utils/paginate";
 
 class Movies extends Component {
   state = {
@@ -31,15 +32,16 @@ class Movies extends Component {
 
   render() {
     const { length: count } = this.state.movies;
-    const { pageSize, currentPage } = this.state;
+    const { pageSize, currentPage, movies: allMovies } = this.state;
+
+    if (count === 0) return <p>No more movies in the thing</p>;
+
+    const movies = paginate(allMovies, currentPage, pageSize);
 
     return (
       <Fragment>
-        <h3>
-          {this.state.movies.length > 0
-            ? `Number of movies ${this.state.movies.length}`
-            : `No more movies in the thing`}
-        </h3>
+        {/* <p>Number of movies {movies.length}</p> - Shows the number of movies on that page */}
+        <p>Number of movies {allMovies.length}</p>
         <table className="table">
           <thead>
             <tr>
@@ -52,7 +54,7 @@ class Movies extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.movies.map((movie, index) => (
+            {movies.map((movie, index) => (
               <tr key={index}>
                 <td>{movie.title}</td>
                 <td>{movie.genre.name}</td>
@@ -77,7 +79,8 @@ class Movies extends Component {
           </tbody>
         </table>
         <Pagination
-          itemsCount={count}
+          itemsCount={"testing testing"}
+          // itemsCount={count}
           pageSize={pageSize}
           currentPage={currentPage}
           onPageChange={this.handlePageChange}
