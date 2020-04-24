@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import MoviesTable from "./moviesTable";
 import ListGroup from "./common/listGroup";
 import { getMovies } from "../services/fakeMovieService";
@@ -89,7 +90,13 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <button className="btn btn-primary">New Movie</button>
+          <Link
+            to="/movies/new"
+            className="btn btn-primary mb-2"
+            // onClick={() => history.push("/movies")}
+          >
+            New Movie
+          </Link>
           <p>Number of movies {totalCount}</p>
           <MoviesTable
             movies={movies}
