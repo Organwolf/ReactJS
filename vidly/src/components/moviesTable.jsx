@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Like from "./common/like";
 import Table from "./common/table";
+import auth from "../services/authService";
 
 class MoviesTable extends Component {
   // Implementation of the columns is very movie specific
@@ -9,31 +10,35 @@ class MoviesTable extends Component {
     {
       path: "title",
       label: "Title",
-      content: (movie) => (
-        <Link to={`/movies/${movie._id}`}>{movie.title}</Link>
-      ),
+      content: movie => <Link to={`/movies/${movie._id}`}>{movie.title}</Link>
     },
     { path: "genre.name", label: "Genre" },
     { path: "numberInStock", label: "Stock" },
     { path: "dailyRentalRate", label: "Rate" },
     {
       key: "like",
-      content: (movie) => (
+      content: movie => (
         <Like liked={movie.liked} onClick={() => this.props.onLike(movie)} />
-      ),
-    },
-    {
-      key: "delete",
-      content: (movie) => (
-        <button
-          onClick={() => this.props.onDelete(movie)}
-          className="btn btn-danger btn-sm"
-        >
-          delete
-        </button>
-      ),
-    },
+      )
+    }
   ];
+
+  deleteColumn = {
+    key: "delete",
+    content: movie => (
+      <button
+        onClick={() => this.props.onDelete(movie)}
+        className="btn btn-danger btn-sm">
+        delete
+      </button>
+    )
+  };
+
+  constructor() {
+    super();
+    const user = auth.getCurrentUser();
+    if (user && user.isAdmin) this.columns.push(this.deleteColumn);
+  }
 
   render() {
     const { movies, onSort, sortColumn } = this.props;
